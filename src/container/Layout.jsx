@@ -29,7 +29,7 @@ const Layout = () => {
         </div>
       </li>
       <li className="nav-item">
-        <a classNameName="nav-link disabled" href="#">Disabled</a>
+        <a className="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
     <form className="form-inline inline my-2 my-lg-0">
