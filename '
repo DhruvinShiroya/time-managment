@@ -1,0 +1,75 @@
+import {useRef , useState, useEffect} from "react"
+import {faCheck , faTImes, faInfoCirle} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+
+
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PASSWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+const Register = () => {
+  const emailRef = useRef();
+  const errRef useRef();
+  cont [errMsg, setErrMsg] = useState('')
+  const [email, setEmail] = useState('');
+  const [validEmail , setValidEmail] = useState(false)
+  const [emailFocus, setemailFocus] = useState(false)
+
+  const [userName, setUserName] = useState('')
+  const [validUserName, setValidUserName] = useState(false)
+  const [userFocus , setUserFocus] = useState(false)
+
+  const [password , setPassword] = useState('')
+  const [validPassword, setValidPassword] = useState(false)
+  const [passwordFocus , setPasswordFocus] = useState(false)
+
+  const [matchPwd, setMatchPwd] = useState('')
+  const [validMatch, setValidMatch] = useState(false)
+  const [matchFocus, setMatchFocus] = useState(false)
+  
+  useEffect(()=> {
+    emailRef.current.focus()
+  },[])
+
+  useEffect(()=> {
+    const result = EMAIL_REGEX.test(email)
+    console.log(result)
+    console.log(email)
+    setValidEmail(result)
+  },[email])
+
+
+  // check if user entered valid email address
+  useEffect(() => {
+    const result = USER_REGEX.test(userName)
+    console.log(result)
+    console.log(userName)
+    setValidUserName(result)
+  },[userName])
+
+  // check if the password is valid and if the it matches 
+  useEffect(() => { 
+    const result = PASSWD_REGEX.test(password)
+    console.log(password)
+    console.log(result)
+    setValidPassword(result)
+    const match = password === matchPwd;
+    setValidMatch(match)
+  },[password, matchPwd])
+
+
+  useEffect(()=>{
+    setErrMsg('')
+
+  },[user,pwd,matchPwd])
+
+  return (
+    <section>
+      <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive" > </p>
+    </section> 
+  )
+}
+
+export default Register;
+
+
