@@ -57,8 +57,10 @@ const Register = () => {
     console.log(password);
     console.log(result);
     setValidPassword(result);
-    const match = password === matchPwd;
-    setValidMatch(match);
+    if(password){
+      const match = password === matchPwd;
+      setValidMatch(match);
+    }
   }, [password, matchPwd]);
 
   useEffect(() => {
@@ -168,7 +170,7 @@ const Register = () => {
                 </div>
                 <div>
                   <label htmlFor="matchPwd">Retype-Password:</label>
-                  <span className={validMatch ? "visible" : "invisible"}>
+                  <span className={ validMatch? "visible" : "invisible"}>
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
                   <input
@@ -181,7 +183,7 @@ const Register = () => {
                     required
                   />
                   <p
-                    id="pwdNote"
+                    id="matchPwd"
                     className={matchFocus && matchPwd && !validMatch
                       ? "visible"
                       : "invisible"}
@@ -196,12 +198,16 @@ const Register = () => {
                     type="checkbox"
                     id="registerCheck"
                     value={termbox}
+                    required
                     aria-describedby="registerCheckHelpText"
                   />
                   <label className="form-check-label" htmlFor="registerCheck">
                     I have read and agree to the terms
                   </label>
                 </div>
+                <button type="submit" className="btn btn-primary btn-block mb-3">
+                  Sign in
+                </button>
               </div>
             </form>
           </div>
